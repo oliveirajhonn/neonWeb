@@ -1,17 +1,20 @@
-Dado("- que estou com o navegador aberto") do   
-  visit("perguntas") 
-  @homeV = Home.new
-  @homeV.acessar_browser()                             
-  
-  
-   sleep(5)                                         
+Quando("- seleciono o a opcao pejota") do
+  @login = Home.new
+  @login.clicar_pejota()
 end
 
-  Quando("- acesso a home do neon") do |table|                                        
-    # table is a Cucumber::MultilineArgument::DataTable                               
-    pending # Write code here that turns the phrase above into concrete actions       
-  end
+E("- seleciono o menu acessar minha conta") do
+  @pejota = Pejota.new
+  @pejota.clicar_acessar_conta()  
+end
 
-  Entao("valido a mensagem de ativar cartao") do                                      
-    pending # Write code here that turns the phrase above into concrete actions       
-  end                                                                                                                                                                    
+E("- preencho os dados") do
+  @login = Login.new
+  @login.clicar_login()
+  @login.clicar_botao_entrar()
+end
+
+Entao("- valido a mensagem de login") do
+  @mensagem = Login.new
+  @mensagem.validar_mensagem()
+end
